@@ -3,7 +3,7 @@ import time
 time_start_zero = time.time()
 
 #Clear the layer
-QgsProject.instance().removeAllMapLayers()
+#QgsProject.instance().removeAllMapLayers()
 
 #Variable Setting
 filename_source = r"D:\Learning & Training\QGIS\@AL\ISD\RAW\Cell.csv"
@@ -29,7 +29,7 @@ duration_start_second = round(time_current-time_start_zero,2)
 duration_start_minute = duration_start_second // 60
 duration_start_second %= 60
 duration_start = f"{int(duration_start_minute)}m{round(int(duration_start_second),2)}s"
-print("1. Plotting Source and Target have been done in",duration_start)
+print(duration_start,"Plotting Source and Target")
 
 result = processing.run("shapetools:createpie", 
         {'INPUT':lyr,'ShapeType':0,
@@ -52,7 +52,7 @@ duration_start_second = round(time_current-time_start_zero,2)
 duration_start_minute = duration_start_second // 60
 duration_start_second %= 60
 duration_start = f"{int(duration_start_minute)}m{round(int(duration_start_second),2)}s"
-print("2. Coverage Beamwidth and Radius have been done in",duration_start)
+print(duration_start,"Coverage Beamwidth and Radius")
 
 result = processing.run("native:joinattributesbylocation",
         {'INPUT':lyr_beam,'PREDICATE':[1],'JOIN':lyr2
@@ -71,7 +71,7 @@ duration_start_second = round(time_current-time_start_zero,2)
 duration_start_minute = duration_start_second // 60
 duration_start_second %= 60
 duration_start = f"{int(duration_start_minute)}m{round(int(duration_start_second),2)}s"
-print("3. Joining Source and Target have been done in",duration_start)
+print(duration_start,"Joining Source and Target")
 
 result = processing.run(
 "native:fieldcalculator", 
@@ -94,7 +94,7 @@ duration_start_second = round(time_current-time_start_zero,2)
 duration_start_minute = duration_start_second // 60
 duration_start_second %= 60
 duration_start = f"{int(duration_start_minute)}m{round(int(duration_start_second),2)}s"
-print("4. Distance Calculation have been done in",duration_start)
+print(duration_start,"Distance Calculation")
 
 import pandas as pd
 
@@ -132,4 +132,5 @@ duration_start_second = round(time_current-time_start_zero,2)
 duration_start_minute = duration_start_second // 60
 duration_start_second %= 60
 duration_start = f"{int(duration_start_minute)}m{round(int(duration_start_second),2)}s"
-print("5. All Process have been done in",duration_start,". Please check the Result.CSV file")
+print(duration_start,"Done")
+print("\nPlease check the Result.CSV file")
