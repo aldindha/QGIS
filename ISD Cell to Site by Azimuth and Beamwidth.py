@@ -107,8 +107,6 @@ df['_rank']=df.groupby('Cellname')['distance'].rank(method="first", ascending=Tr
 df_test=df
 df_test=df_test.loc[df_test['_rank']<4]
 
-import pandas as pd
-
 pivot_df = df_test.pivot(index=['Cellname', 'Longitude', 'Latitude', 'Azimuth'], 
                     columns='_rank', 
                     values=['Sitename', 'distance'])
